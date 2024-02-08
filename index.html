@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoodGames</title>
+    <meta name="description"
+        content="Página web realizada para el Máster en Ingeniería Web en la Universidad de Oviedo">
+    <meta name="keywords" content="MIW, Uniovi, EII, REST, SOAP">
+    <meta name="author" content="Sergio Castillo , Daniel Ferreira, Diego González">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/main.js"></script>
+</head>
+
+<body>
+    <h1>GoodGames</h1>
+    <main>
+        <div id="buscador">
+            <h2>Buscador</h2>
+            <input type="text" id="search" placeholder="Buscar...">
+            <div id="searchResults">
+                <!-- Aquí se mostrarán los resultados de la búsqueda -->
+            </div>
+        </div>
+
+        <div id="kanban">
+            <div class="column" id="todo">
+                <h2>Pendientes</h2>
+            </div>
+            <div class="column" id="inProgress">
+                <h2>En progreso</h2>
+            </div>
+            <div class="column" id="done">
+                <h2>Completados</h2>
+            </div>
+        </div>
+    </main>
+    <!-- Modal -->
+    <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Título del Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Contenido del modal.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <!-- Puedes añadir más botones de acción aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Página web realizada para el Máster en Ingeniería Web en la Universidad de Oviedo</p>
+    </footer>
+</body>
+
+</html>
