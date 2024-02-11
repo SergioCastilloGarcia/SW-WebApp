@@ -22,12 +22,12 @@
     <link rel="stylesheet" href="./css/index.css">
     <script src="./js/main.js"></script>
     <script src="./js/login.js"></script>
+    <script src="./js/darkMode.js"></script>
 </head>
 
 <body>
     <header>
         <h1>GoodGames</h1>
-        <button onclick="logout()">Salir</button>
         <p id="bienvenido">Bienvenido </p>
     </header>
     <main>
@@ -58,7 +58,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitle">Título del Modal</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button btn" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -72,9 +72,15 @@
             </div>
         </div>
     </div>
-    <footer>
-        <p>Página web realizada para el Máster en Ingeniería Web en la Universidad de Oviedo</p>
-    </footer>
+    <!-- Botón de Cambio de Tema y salir-->
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" onchange="changeTheme()" />
+            <span class="slide"></span>
+        </label>
+
+        <button class="mt-8 btn" onclick="logout()">Salir</button>
+    </div>
 </body>
 
 </html>

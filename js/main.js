@@ -55,10 +55,8 @@ function stopFunction(element) {
 //Abre la modal de un juego
 function clickCard() {
     modalGameId = $(this).attr('id');
-    // Obtener el texto de la tarjeta clickeada
-    var cardText = $(this).text();
     // Cambiar el título del modal por el texto de la tarjeta
-    $("#modalTitle").text(cardText);
+    $("#modalTitle").text(modalGameId);
     // Abrir el modal
     $("#cardModal").modal("show");
 }
@@ -74,7 +72,7 @@ function search() {
 
     results.forEach(function (result, i) {
         if (result.toLowerCase().includes(searchTerm) && !isGameAdded(i)) {
-            var resultItem = $("<div class='card' id=" + i + ">" + result + "</div>");
+            var resultItem = $("<div class='card' id=" + i + "> <img src='img/placeholder.jpg' />" + result + "</div>");
             addDraggable(resultItem);
             resultItem.click(clickCard);
             $searchResults.append(resultItem);
