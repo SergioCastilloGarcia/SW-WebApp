@@ -20,8 +20,8 @@
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/index.css">
-    <script src="./js/main.js"></script>
     <script src="./js/login.js"></script>
+    <script src="./js/main.js"></script>
     <script src="./js/darkMode.js"></script>
 </head>
 
@@ -31,15 +31,15 @@
         <p id="bienvenido">Bienvenido </p>
     </header>
     <main>
-        <div id="buscador">
+        <div id="buscador" class="text-center">
             <h2>Buscador</h2>
             <input type="text" id="search" placeholder="Buscar...">
-            <div id="searchResults">
+            <div id="searchResults" class="mt-2">
                 <!-- Aquí se mostrarán los resultados de la búsqueda -->
             </div>
         </div>
 
-        <div id="kanban">
+        <div id="kanban" class="text-center">
             <div class="column" id="todo" data-state="todo">
                 <h2>Pendientes</h2>
             </div>
@@ -79,7 +79,7 @@
             <span class="slide"></span>
         </label>
 
-        <button class="mt-8 btn" onclick="logout()">Salir</button>
+        <button class="mt-4 btn" onclick="logout()">Salir</button>
     </div>
 </body>
 

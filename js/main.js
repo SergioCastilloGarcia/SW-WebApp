@@ -1,7 +1,7 @@
+//Comprobamos que esta logeado
+isLogin();
 var modalGameId;//referencia al ide del juego que abrio la modal
 $(document).ready(function () {
-    //Comprobamos que esta logeado
-    isLogin();
 
     getGames();
 
