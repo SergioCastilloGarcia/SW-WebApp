@@ -24,7 +24,7 @@ body {
 
 .theme-switch-wrapper button {
     position: fixed;
-    top: 3rem;
+    top: 2rem;
     right: 0.6rem;
 }
 
@@ -36,6 +36,10 @@ body {
 
 #checkbox:checked+span.slide:before {
     transform: translatex(2rem);
+}
+
+span.slide:hover {
+    cursor: pointer;
 }
 
 span.slide {
