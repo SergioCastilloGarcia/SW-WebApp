@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoodGames - Inicio de sesion</title>
+    <meta name="description"
+        content="Página web realizada para el Máster en Ingeniería Web en la Universidad de Oviedo">
+    <meta name="keywords" content="MIW, Uniovi, EII, REST, SOAP">
+    <meta name="author" content="Sergio Castillo , Daniel Ferreira, Diego González">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="./js/login.js"></script>
+    <script src="./js/darkMode.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">GoodGames</h1>
+        <main class="login-form">
+            <h2 class="text-center mb-4">Iniciar Sesión</h2>
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario:</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+            </form>
+        </main>
+    </div>
+    <!-- Botón de Cambio de Tema -->
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" onchange="changeTheme()" />
+            <span class="slide"></span>
+        </label>
+    </div>
+</body>
+
+</html>

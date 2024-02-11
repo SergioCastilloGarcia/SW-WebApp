@@ -1,45 +1,64 @@
- /* Estilos CSS para el diseño */
- body {
-     font-family: Arial, sans-serif;
-     display: flex;
-     flex-direction: column;
-     height: 100vh;
-     margin: 0;
-     padding: 0;
- }
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 
- main {
-     display: flex;
-     height: 90%;
+/* Modo Oscuro */
+.dark {
+    background-color: #222;
+    color: #fff;
+}
 
- }
 
- #buscador {
-     flex: 0 0 200px;
-     background-color: #f0f0f0;
-     padding: 20px;
- }
+.theme-switch-wrapper {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    margin-right: 1rem;
+    padding: 1rem 2rem;
+}
 
- #kanban {
-     flex: 1;
-     display: flex;
-     overflow-x: auto;
-     padding: 20px;
- }
+.theme-switch-wrapper button {
+    position: fixed;
+    top: 3rem;
+    right: 0.6rem;
+}
 
- .column {
-     flex: 1;
-     background-color: #e0e0e0;
-     border-radius: 8px;
-     margin-right: 20px;
-     padding: 20px;
-     min-width: 250px;
- }
+#checkbox {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
 
- .card {
-     background-color: #ffffff;
-     border: 1px solid #cccccc;
-     border-radius: 4px;
-     padding: 10px;
-     margin-bottom: 10px;
- }
+#checkbox:checked+span.slide:before {
+    transform: translatex(2rem);
+}
+
+span.slide {
+    position: absolute;
+    width: 3rem;
+    height: 1rem;
+    background: #dadada;
+    border-radius: 30px;
+}
+
+span.slide:before {
+    position: absolute;
+    content: "";
+    height: 1.3rem;
+    width: 1.3rem;
+    background: #fff;
+    border-radius: 50%;
+    top: -2px;
+    left: 0px;
+    transition: 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.21) 0px 0px 7px 1px;
+}
+
+.modal.fade.show.dark {
+    background: transparent;
+}
