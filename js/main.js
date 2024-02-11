@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    isLogin();
     $(".card").draggable({
         revert: "invalid",
         helper: "clone",
