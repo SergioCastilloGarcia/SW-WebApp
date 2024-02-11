@@ -1,17 +1,15 @@
+var modalGameId;//referencia al ide del juego que abrio la modal
 $(document).ready(function () {
+    //Comprobamos que esta logeado
     isLogin();
-    $(".card").draggable({
-        revert: "invalid",
-        helper: "clone",
-        start: function (event, ui) {
-            startFunction$(this);
-        },
-        stop: function (event, ui) {
-            stopFunction($(this));;
-        }
-    });
+
+    //Funcionalidad de cada card
+    addDraggable($(".card"));
+
+    //Funcionalidad de las modales
     $(".card").click(clickCard);
 
+    //Funcionalidad de cada columna
     $(".column").droppable({
         accept: ".card",
         drop: function (event, ui) {
@@ -19,7 +17,7 @@ $(document).ready(function () {
         }
     });
 
-    //Añadimos la funcionalidad del buscador
+    //Funcionalidad del buscador
     $("#search").on("input", search);
 });
 
@@ -31,17 +29,20 @@ function dropTableFunction(ui, element) {
     // Comprobamos si la tarjeta está siendo movida entre columnas y no está ya en la columna de destino
     if (draggedCard.parent().attr('id') !== targetColumn.attr('id') && !targetColumn.find('#' + draggedCard.attr('id')).length) {
         draggedCard.detach().appendTo(targetColumn);
+        var gameId = draggedCard.attr('id');
+        var state = targetColumn.data("state")
+        changeGameState(gameId, state)
     }
 
 }
+
 // Función start de un elemento
 function startFunction(element) {
-    console.log("start");
     element.css('opacity', '0.5'); // Reducir la opacidad al comenzar el arrastre
 }
+
 // Función stop de un elemento
 function stopFunction(element) {
-    console.log("stop");
     element.css('opacity', '1'); // Restaurar la opacidad cuando se suelta la tarjeta
     var parent = element.parent();
 
@@ -51,15 +52,17 @@ function stopFunction(element) {
     }
 }
 
+//Abre la modal de un juego
 function clickCard() {
-    console.log("click")
+    modalGameId = $(this).attr('id');
     // Obtener el texto de la tarjeta clickeada
     var cardText = $(this).text();
     // Cambiar el título del modal por el texto de la tarjeta
-    $("#exampleModalLabel").text(cardText);
+    $("#modalTitle").text(cardText);
     // Abrir el modal
     $("#cardModal").modal("show");
 }
+
 // Simular resultados de búsqueda
 function search() {
     var searchTerm = $(this).val().toLowerCase();
@@ -72,25 +75,28 @@ function search() {
     results.forEach(function (result, i) {
         if (result.toLowerCase().includes(searchTerm) && !isGameAdded(i)) {
             var resultItem = $("<div class='card' id=" + i + ">" + result + "</div>");
-            resultItem.draggable({
-                revert: "invalid",
-                helper: "clone",
-                start: function (event, ui) {
-                    startFunction($(this));
-                },
-                stop: function (event, ui) {
-                    stopFunction($(this));
-                }
-            });
+            addDraggable(resultItem);
             resultItem.click(clickCard);
             $searchResults.append(resultItem);
         }
     });
 }
 
+//Hacer draggable un item
+function addDraggable(item) {
+    item.draggable({
+        revert: "invalid",
+        helper: "clone",
+        start: function (event, ui) {
+            startFunction($(this));
+        },
+        stop: function (event, ui) {
+            stopFunction($(this));
+        }
+    });
+}
 //Devuelve si el elemento esta ya añadido
 function isGameAdded(id) {
-    console.log(id)
     var isIdUnique = true;
     $(".column").each(function () {
         if ($(this).find("#" + id).length) {
@@ -99,4 +105,23 @@ function isGameAdded(id) {
         }
     });
     return !isIdUnique;
+}
+
+//Cambia el estado de un juego
+function changeGameState(gameId, state) {
+    //TODO llamar a api
+    var username = getCookie("username");
+    console.log("Cambio de estado: %s, %s, %s ", gameId, state, username)
+}
+
+//Elimina un juego
+function eliminar() {
+    //TODO llamar a api
+    var username = getCookie("username");
+    $("#" + modalGameId).remove();//Eliminamos la card
+
+    $("#cardModal").modal("hide");// Cerramos el modal
+
+    console.log("Eliminado: %s, %s", modalGameId, username)
+
 }

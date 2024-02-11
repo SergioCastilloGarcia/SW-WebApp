@@ -38,7 +38,7 @@ function loginFormSubmit(event) {
 
     if (loggedInUser) {
         // Crear una cookie para almacenar el nombre de usuario
-        document.cookie = `username=${loggedInUser};`;
+        document.cookie = `username=${username};`;
 
         // Redirigir a la página principal
         window.location.replace("index.html");
@@ -50,7 +50,7 @@ function loginFormSubmit(event) {
 // Método simulado de inicio de sesión
 function login(username, password) {
     // Aquí deberías hacer la autenticación con el backend
-    return username;
+    return true;
     // Supongamos que el usuario "admin" con contraseña "password" es válido
     if (username === "admin" && password === "password") {
         return username;

@@ -1,0 +1,35 @@
+main {
+    display: flex;
+    height: 90%;
+
+}
+
+#buscador {
+    flex: 0 0 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+#kanban {
+    flex: 1;
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+}
+
+.column {
+    flex: 1;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    margin-right: 20px;
+    padding: 20px;
+    min-width: 250px;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
