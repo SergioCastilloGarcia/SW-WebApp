@@ -59,6 +59,6 @@ span.slide:before {
     box-shadow: rgba(0, 0, 0, 0.21) 0px 0px 7px 1px;
 }
 
-#searchResults {
+.modal.fade.show.dark {
     background: transparent;
 }

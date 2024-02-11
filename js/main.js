@@ -50,9 +50,10 @@ function stopFunction(element) {
 
 //Abre la modal de un juego
 function clickCard() {
-    modalGameId = $(this).attr('id');
+    gameId = $(this).attr('id');
     // Cambiar el título del modal por el texto de la tarjeta
-    $("#modalTitle").text(modalGameId);
+    gameTitle = $("#" + gameId + "_title").text()
+    $("#modalTitle").text(gameTitle);
     // Abrir el modal
     $("#cardModal").modal("show");
 }
@@ -145,7 +146,10 @@ function agregarCards(games) {
         if (!isGameAdded(game.id)) {//evitamos duplciados
             const item = $(`<div class="card" id="${game.id}">
                         <img src="${game.img}" />
-                        ${game.title}
+                        <div class="d-none">
+                            <p id="${game.id}_title">${game.title}</p>
+                        </div>
+                        
                     </div>`);
 
             addDraggable(item);
