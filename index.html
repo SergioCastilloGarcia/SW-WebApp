@@ -33,6 +33,9 @@
     <main>
         <div id="buscador" class="text-center">
             <h2>Buscador</h2>
+            <select id="category">
+                <option value="" disabled selected>Categoria</option>
+            </select>
             <input type="text" id="search" placeholder="Buscar...">
             <div id="searchResults" class="mt-2">
                 <!-- Aquí se mostrarán los resultados de la búsqueda -->
@@ -58,7 +61,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitle">Título del Modal</h5>
-                    <button type="button btn" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close btn" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
