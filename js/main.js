@@ -17,21 +17,34 @@ $(document).ready(function () {
     $("#search").on("input", search);
 });
 
-//Función que permite que las cards se muevan
+//Función que permite que las columnas acepten cards
 function dropTableFunction(ui, element) {
     var targetColumn = element;
     var draggedCard = ui.draggable;
-
+    var targetColumnId = targetColumn.attr('id')
+    var oldColumnId = draggedCard.parent().attr('id')
     // Comprobamos si la tarjeta está siendo movida entre columnas y no está ya en la columna de destino
-    if (draggedCard.parent().attr('id') !== targetColumn.attr('id') && !targetColumn.find('#' + draggedCard.attr('id')).length) {
+    if (oldColumnId !== targetColumnId && !targetColumn.find('#' + draggedCard.attr('id')).length) {
         draggedCard.detach().appendTo(targetColumn);
         var gameId = draggedCard.attr('id');
         var state = targetColumn.data("state")
         changeGameState(gameId, state)
+        updateColumnCount(targetColumnId);
+        updateOldColumnCount(oldColumnId);
     }
 
 }
 
+//Actualiza el contador de una columna
+function updateColumnCount(targetColumnId) {
+    var gamesCount = $("#" + targetColumnId + " .card").length;
+    $("#" + targetColumnId + "_count").text("(" + gamesCount + ")");
+}
+//Actualiza el contador de una columna  a la que se le ha eliminado una card
+function updateOldColumnCount(targetColumnId) {
+    var gamesCount = $("#" + targetColumnId + " .card").length;
+    $("#" + targetColumnId + "_count").text("(" + (gamesCount - 1) + ")");
+}
 // Función start de un elemento
 function startFunction(element) {
     element.css('opacity', '0.5'); // Reducir la opacidad al comenzar el arrastre
@@ -50,9 +63,9 @@ function stopFunction(element) {
 
 //Abre la modal de un juego
 function clickCard() {
-    gameId = $(this).attr('id');
+    modalGameId = $(this).attr('id');
     // Cambiar el título del modal por el texto de la tarjeta
-    gameTitle = $("#" + gameId + "_title").text()
+    gameTitle = $("#" + modalGameId + "_title").text()
     $("#modalTitle").text(gameTitle);
     // Abrir el modal
     $("#cardModal").modal("show");
@@ -106,8 +119,9 @@ function changeGameState(gameId, state) {
 function eliminar() {
     //TODO llamar a api
     var username = getCookie("username");
+    var parentId = $("#" + modalGameId).parent().attr("id");
     $("#" + modalGameId).remove();//Eliminamos la card
-
+    updateColumnCount(parentId);//Actualizamos el contador
     $("#cardModal").modal("hide");// Cerramos el modal
 
     console.log("Eliminado: %s, %s", modalGameId, username)
@@ -154,9 +168,13 @@ function agregarCards(games) {
 
             addDraggable(item);
             item.click(clickCard);
-            const elementoDestino = $("#" + (game.state ? game.state : "searchResults"));//lo añade a la columa con el state necesario, por defecto en el buscadaor
+
+            //lo añade a la columa con el state necesario, por defecto en el buscador
+            const elementoDestino = $("#" + (game.state ? game.state : "searchResults"));
             if (elementoDestino.length > 0) {
                 elementoDestino.append(item);
+
+                updateColumnCount(elementoDestino.attr("id"));
             } else {
                 console.error(`No se encontró el elemento destino para el estado ${game.state ? game.state : "searchResults"}`);
             }
