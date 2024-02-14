@@ -23,7 +23,7 @@ function updateStarSelect() {
 //Obtiene la valoracion de un usuario sobre un juego
 function getStarSelect() {
     var username = getCookie("username");
-    console.log("Consulta de valoracion de %s cambiada por %s", modalGameId, username)
+    console.log("Consulta de valoracion de %s por %s", modalGameId, username)
     //TODO llamar a api
     return 2;
 }
@@ -31,8 +31,7 @@ function getStarSelect() {
 
 //Obtiene la valoracion general de un juego
 function getStarMedia() {
-    var username = getCookie("username");
-    //TODO llamar a api
-    return 2.9;
+    var starMedia = $("#" + modalGameId + "_starMedia").text()
+    return starMedia;
 }
 

@@ -70,8 +70,10 @@ function clickCard() {
     gameTitle = $("#" + modalGameId + "_title").text()
     $("#modalTitle").text(gameTitle);
 
-    //Actualiza las estrellas
+    //Actualiza las estrellas y comentarios
     updateStarSelect();
+    updateComments();
+
     // Abrir el modal
     $("#cardModal").modal("show");
 }

@@ -23,11 +23,13 @@
     <link rel="stylesheet" href="./css/darkMode.css">
     <link rel="stylesheet" href="./css/exitButton.css">
     <link rel="stylesheet" href="./css/rating.css">
+    <link rel="stylesheet" href="./css/comments.css">
     <script src="./js/login.js"></script>
     <script src="./js/main.js"></script>
     <script src="./js/search.js"></script>
     <script src="./js/rating.js"></script>
     <script src="./js/darkMode.js"></script>
+    <script src="./js/comment.js"></script>
 </head>
 
 <body>
@@ -77,7 +79,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Contenido del modal.
+
+
+                    <!-- Comentario -->
+                    <h3>Comentarios</h3>
+                    <form id="commentForm">
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comenta:</label>
+                            <textarea class="form-control" id="comment" name="comment" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                    </form>
+
+                    <div id="comentarios">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <div class="stars">

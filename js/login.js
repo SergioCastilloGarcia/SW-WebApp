@@ -1,4 +1,3 @@
-//Controla que el usuario haya iniciado sesion
 $(document).ready(function () {
     $("#loginForm").submit(loginFormSubmit);
 });
