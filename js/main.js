@@ -55,12 +55,6 @@ function startFunction(element) {
 // Función stop de un elemento
 function stopFunction(element) {
     element.css('opacity', '1'); // Restaurar la opacidad cuando se suelta la tarjeta
-    var parent = element.parent();
-
-    // Comprobamos si la tarjeta se movió fuera del tablero kanban
-    if (!parent.hasClass('column')) {
-        element.remove(); // Si se movió fuera del kanban, eliminar la tarjeta
-    }
 }
 
 //Abre la modal de un juego

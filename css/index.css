@@ -19,6 +19,12 @@ header {
     height: max-content;
 }
 
+#searchResults {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    gap: 1rem;
+}
+
 #kanban {
     flex: 1;
     display: flex;
@@ -58,6 +64,10 @@ header {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     max-width: 10rem;
     height: fit-content;
+}
+
+.card:hover {
+    cursor: pointer;
 }
 
 .column .card {
