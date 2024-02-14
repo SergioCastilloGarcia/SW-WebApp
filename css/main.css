@@ -66,3 +66,7 @@ span.slide:before {
 .modal.fade.show.dark {
     background: transparent;
 }
+
+.modal-footer {
+    justify-content: space-between;
+}

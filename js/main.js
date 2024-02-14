@@ -69,6 +69,9 @@ function clickCard() {
     // Cambiar el título del modal por el texto de la tarjeta
     gameTitle = $("#" + modalGameId + "_title").text()
     $("#modalTitle").text(gameTitle);
+
+    //Actualiza las estrellas
+    updateStarSelect();
     // Abrir el modal
     $("#cardModal").modal("show");
 }
