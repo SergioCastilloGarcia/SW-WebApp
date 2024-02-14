@@ -6,7 +6,7 @@ $(document).ready(function () {
     getGames();
     getCategories();
     //Funcionalidad de cada columna
-    $(".column").droppable({
+    $(".kanban-column").droppable({
         accept: ".card",
         drop: function (event, ui) {
             dropTableFunction(ui, $(this))
@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 //Función que permite que las columnas acepten cards
 function dropTableFunction(ui, element) {
-    var targetColumn = element;
+    var targetColumn = element.children('div:first');
     var draggedCard = ui.draggable;
     var targetColumnId = targetColumn.attr('id')
     var oldColumnId = draggedCard.parent().attr('id')

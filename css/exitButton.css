@@ -1,0 +1,89 @@
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    margin-top: 2rem;
+    margin-right: 0.5rem;
+}
+
+/* plus sign */
+.sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark.sign {
+    background-color: #000000bb;
+}
+
+.sign svg {
+    width: 17px;
+}
+
+.sign svg path {
+    fill: #000000bb;
+}
+
+.dark.sign svg path {
+    fill: white;
+}
+
+.dark.sign svg {
+    background-color: #000000bb;
+}
+
+/* text */
+.text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: #000000bb;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+    background-color: white;
+}
+
+.dark.text {
+    color: white;
+    background-color: #000000bb;
+}
+
+/* hover effect on button width */
+.btn:hover {
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: .3s;
+}
+
+.btn:hover .sign {
+    width: 40%;
+    transition-duration: .3s;
+    padding-left: 20px;
+}
+
+/* hover effect button's text */
+.btn:hover .text {
+    opacity: 1;
+    width: 55%;
+    transition-duration: .5s;
+    padding-right: 10px;
+}
+
+/* button click effect*/
+.btn:active {
+    transform: translate(2px, 2px);
+}
