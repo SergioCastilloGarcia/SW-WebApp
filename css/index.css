@@ -78,19 +78,50 @@ header {
     background-color: #00000050;
 }
 
+.column.dark {
+    background-color: transparent;
+}
+
 #buscador.dark {
     background-color: #00000050;
 }
 
-.btn {
-    background-color: #ffffff;
-}
-
-.dark .btn {
-    background-color: #000000bb;
-    ;
-}
 
 #searchResults {
     background: transparent;
+}
+
+input {
+    background: transparent;
+    border: 0.2rem black solid;
+}
+
+select {
+    background: transparent;
+    border: 0.2rem black solid;
+
+}
+
+select option {
+    background: white;
+
+}
+
+.dark input {
+    background: transparent;
+    border: 0.2rem white solid;
+    color: white;
+}
+
+.dark select {
+    background: transparent;
+    border: 0.2rem white solid;
+    color: white;
+
+}
+
+.dark select option {
+    background: black;
+    ;
+
 }

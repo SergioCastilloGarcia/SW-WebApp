@@ -1,4 +1,4 @@
-.btn {
+.exitButton {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -22,27 +22,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: transparent;
 }
 
-.dark.sign {
-    background-color: #000000bb;
-}
 
 .sign svg {
     width: 17px;
 }
 
 .sign svg path {
-    fill: #000000bb;
+    background-color: transparent;
 }
 
 .dark.sign svg path {
     fill: white;
 }
 
-.dark.sign svg {
-    background-color: #000000bb;
-}
 
 /* text */
 .text {
@@ -50,7 +45,7 @@
     right: 0%;
     width: 0%;
     opacity: 0;
-    color: #000000bb;
+    color: #000000ee;
     font-size: 1.2em;
     font-weight: 600;
     transition-duration: .3s;
@@ -59,24 +54,24 @@
 
 .dark.text {
     color: white;
-    background-color: #000000bb;
+    background-color: transparent;
 }
 
 /* hover effect on button width */
-.btn:hover {
+.exitButton:hover {
     width: 125px;
     border-radius: 40px;
     transition-duration: .3s;
 }
 
-.btn:hover .sign {
+.exitButton:hover .sign {
     width: 40%;
     transition-duration: .3s;
     padding-left: 20px;
 }
 
 /* hover effect button's text */
-.btn:hover .text {
+.exitButton:hover .text {
     opacity: 1;
     width: 55%;
     transition-duration: .5s;
@@ -84,6 +79,6 @@
 }
 
 /* button click effect*/
-.btn:active {
+.exitButton:active {
     transform: translate(2px, 2px);
 }
