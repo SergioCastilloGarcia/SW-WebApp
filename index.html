@@ -30,18 +30,31 @@
     <script src="./js/rating.js"></script>
     <script src="./js/darkMode.js"></script>
     <script src="./js/comment.js"></script>
+    <script src="./js/filter.js"></script>
 </head>
 
 <body>
     <header>
-        <h1>GoodGames</h1>
-        <p id="bienvenido">Bienvenido </p>
+        <div>
+            <h1>GoodGames</h1>
+            <p id="bienvenido">Bienvenido </p>
+        </div>
+        <div id="filtros">
+            <h2>Filtrar por: </h2>
+            <select id="categoryFilter">
+                <option value="" selected>Categoria</option>
+            </select>
+            <input type="text" id="searchFilter" placeholder="Pokémon...">
+            <div id="filterResults" class="mt-2">
+                <!-- Aquí se mostrarán los resultados de la búsqueda -->
+            </div>
+        </div>
     </header>
     <main>
         <div id="buscador" class="text-center">
             <h2>Buscador</h2>
             <select id="category">
-                <option value="" disabled selected>Categoria</option>
+                <option value="" selected>Categoria</option>
             </select>
             <input type="text" id="search" placeholder="Buscar...">
             <div id="searchResults" class="mt-2">

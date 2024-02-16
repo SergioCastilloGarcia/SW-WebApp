@@ -7,6 +7,9 @@ main {
 header {
     margin-top: 1rem;
     margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
 }
 
 #buscador {

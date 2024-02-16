@@ -1,12 +1,10 @@
-
 // Simular resultados de búsqueda
 function search() {
-    var searchTerm = $(this).val().toLowerCase();
     var searchResults = $("#searchResults");
     searchResults.empty();
 
     // Simulamos búsqueda, aquí debes incluir tu lógica de búsqueda real
-    var results = getResultList(searchTerm);
+    var results = getResultList();
 
     agregarCards(results)
 }
@@ -29,14 +27,14 @@ function getGames() {
     agregarCards(games);
 }
 //Obtiene los juegos de la api
-function getResultList(searchTerm) {
+function getResultList() {
     //TODO llamar a API
-    var username = getCookie("username");
+    var searchTerm = $("#search").val();
     var category = $("#category").val();
     return [
-        { id: 11, title: "Kirby", img: "https://uvejuegos.com/img/caratulas/21119/Copia%20de%20kirby-mouse-attack-ds.jpg", starMedia: "3.9" },
-        { id: 22, title: "Sonic", img: "https://images.cdn2.buscalibre.com/fit-in/360x360/71/59/7159dc0a2cf1c004783b55eff8b3481f.jpg", starMedia: "1.2" },
-        { id: 33, title: "Pokemon Ranger", img: "https://uvejuegos.com/img/caratulas/16646/pokemon-ranger-dsG.jpg", starMedia: "5" }
+        { id: 11, title: "Kirby", img: "https://uvejuegos.com/img/caratulas/21119/Copia%20de%20kirby-mouse-attack-ds.jpg", starMedia: "3.9", category: "plataforma" },
+        { id: 22, title: "Sonic", img: "https://images.cdn2.buscalibre.com/fit-in/360x360/71/59/7159dc0a2cf1c004783b55eff8b3481f.jpg", starMedia: "1.2", category: "deportes" },
+        { id: 33, title: "Pokemon Ranger", img: "https://uvejuegos.com/img/caratulas/16646/pokemon-ranger-dsG.jpg", starMedia: "5", category: "carreras" }
     ];
 }
 //Obtiene los juegos de la api
@@ -44,9 +42,9 @@ function getGamesList() {
     //TODO llamar a API
     var username = getCookie("username");
     return [
-        { id: 88, title: "Mario Kart", img: "https://uvejuegos.com/img/caratulas/7116/Caja_NDS_MarioKart[1].jpg", state: "todo", starMedia: "0" },
-        { id: 78, title: "Mario 64", img: "https://uvejuegos.com/img/caratulas/7113/super_mario_64_ds_eur.jpg", state: "done", starMedia: "1.1" },
-        { id: 98, title: "Mario y Luigi", img: "https://uvejuegos.com/img/caratulas/15406/BajandochemsNDS.jpg", state: "inProgress", starMedia: "2.3" }
+        { id: 88, title: "Mario Kart", img: "https://uvejuegos.com/img/caratulas/7116/Caja_NDS_MarioKart[1].jpg", state: "todo", starMedia: "0", category: "carreras" },
+        { id: 78, title: "Mario 64", img: "https://uvejuegos.com/img/caratulas/7113/super_mario_64_ds_eur.jpg", state: "done", starMedia: "1.1", category: "plataforma" },
+        { id: 98, title: "Mario y Luigi", img: "https://uvejuegos.com/img/caratulas/15406/BajandochemsNDS.jpg", state: "inProgress", starMedia: "2.3", category: "deportes" }
     ];
 }
 //Obtiene y añade las categorias
@@ -54,14 +52,16 @@ function getCategories() {
     var categories = getCategoriesList();
     // Seleccionamos el elemento select
     var select = $("#category");
+    var filterSelect = $("#categoryFilter");
 
     // Iteramos sobre la lista
     $.each(categories, function (index, category) {
         // Creamos un elemento option con el valor y el texto correspondientes
         var option = $("<option>").attr("value", category.slug).text(category.name);
 
-        // Agregamos el elemento option al select
+        // Agregamos el elemento option al select de busqueda y filtrado
         select.append(option);
+        filterSelect.append(option.clone());
     });
 }
 //Obtiene los juegos de la api
@@ -81,6 +81,7 @@ function agregarCards(games) {
                         <img src="${game.img}" />
                         <div class="d-none">
                             <p id="${game.id}_title">${game.title}</p>
+                            <p id="${game.id}_category">${game.category}</p>
                             <p id="${game.id}_starMedia">${game.starMedia}</p>
                         </div>
                         

@@ -15,8 +15,11 @@ $(document).ready(function () {
 
     //Funcionalidad del buscador
     $("#search").on("input", search);
-    //Funcionalidad de la categorias
     $("#category").on("change", search);
+
+    //Funcionalidad del filtrado
+    $("#searchFilter").on("input", filter);
+    $("#categoryFilter").on("change", filter);
 });
 
 //Función que permite que las columnas acepten cards
