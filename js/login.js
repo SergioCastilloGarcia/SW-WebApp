@@ -39,7 +39,7 @@ function loginFormSubmit(event) {
 
 }
 
-// Método simulado de inicio de sesión
+// Inicia de sesión
 function login(email, password) {
     var datosLogin = {
         email: email,
@@ -57,7 +57,7 @@ function login(email, password) {
             alert("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.");
         });
 }
-// Método para cerrar sesión
+// Cierra sesión
 function logout() {
     // Crear una cookie para almacenar el nombre de usuario
     document.cookie = `username=;`;
