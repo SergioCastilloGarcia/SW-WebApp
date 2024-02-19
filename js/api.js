@@ -1,5 +1,6 @@
 const API_URL = "http://156.35.98.165:8080/GoodGamesWSApp-1.1.0/api/v1/"
 const VALORATIONS = "valorations"
+const VALORATIONS_MEDIA = "valorations/media/"
 const USERS = "users"
 const GAMES = "games"
 const RAWG_GAMES = "rawg/games"

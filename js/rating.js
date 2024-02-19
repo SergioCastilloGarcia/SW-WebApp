@@ -6,32 +6,57 @@ $(document).ready(function () {
 
 //Cambia el valor de la estrella seleccionada
 function changeStarSelect(starSelect) {
-    //TODO llamar a api
-    var value = starSelect.val()
-    var userId = getCookie("userId");
-    console.log("Valoracion de %s cambiada por %s a %s", modalGameId, userId, value)
+    data = {
+        userId: getCookie("userId"),
+        gameId: modalGameId,
+        mark: starSelect.val()
+
+    }
+    doPost(VALORATIONS, data, function (respuesta) {
+        updateStarSelect();
+    }, function (error) {
+        alert("No se ha podido actualizar la valoracion");
+    });
 }
 //Obtiene la valoracion de un juego y actualiza la estrella
 function updateStarSelect() {
-    var value = getStarSelect();
-    $("#star" + value).prop('checked', true)
+    getStarSelect().then(function (value) {
+        $("#star" + value).prop('checked', true)
+    });
 
-    var media = getStarMedia();
-    $("#starMedia").text(media);
+    getStarMedia().then(function (value) {
+        $("#starMedia").text(value)
+    });
+
 }
 
 //Obtiene la valoracion de un usuario sobre un juego
 function getStarSelect() {
-    var userId = getCookie("userId");
-    console.log("Consulta de valoracion de %s por %s", modalGameId, userId)
-    //TODO llamar a api
-    return 2;
+    var data = {
+        userId: getCookie("userId"),
+        gameId: modalGameId
+    }
+
+    return new Promise(function (resolve, reject) {
+        doGet(VALORATIONS, data,
+            function (respuesta) {
+                resolve(respuesta.valoration);
+            }, function (error) {
+                resolve(0)
+            });
+    });
 }
 
 
 //Obtiene la valoracion general de un juego
 function getStarMedia() {
-    var starMedia = $("#" + modalGameId + "_starMedia").text()
-    return starMedia;
+    return new Promise(function (resolve, reject) {
+        doGet(VALORATIONS_MEDIA + modalGameId, undefined,
+            function (respuesta) {
+                resolve(respuesta);
+            }, function (error) {
+                resolve(0)
+            });
+    });
 }
 

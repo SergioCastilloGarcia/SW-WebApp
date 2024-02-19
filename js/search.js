@@ -81,7 +81,6 @@ function agregarCards(games) {
                         <div class="d-none">
                             <p id="${game.id}_title">${game.name}</p>
                             <p id="${game.id}_category">${game.genres?.map(g => g.name).join(';')}</p>
-                            <p id="${game.id}_starMedia">0</p>
                         </div>
                         
                     </div>`);
