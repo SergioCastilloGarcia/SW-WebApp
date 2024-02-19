@@ -2,11 +2,7 @@
 function search() {
     var searchResults = $("#searchResults");
     searchResults.empty();
-
-    // Simulamos búsqueda, aquí debes incluir tu lógica de búsqueda real
-    var results = getResultList();
-
-    agregarCards(results)
+    getResultList();
 }
 
 //Devuelve si el elemento esta ya añadido
@@ -29,13 +25,16 @@ function getGames() {
 //Obtiene los juegos de la api
 function getResultList() {
     //TODO llamar a API
-    var searchTerm = $("#search").val();
     var category = $("#category").val();
-    return [
-        { id: 11, title: "Kirby", img: "https://uvejuegos.com/img/caratulas/21119/Copia%20de%20kirby-mouse-attack-ds.jpg", starMedia: "3.9", category: "plataforma" },
-        { id: 22, title: "Sonic", img: "https://images.cdn2.buscalibre.com/fit-in/360x360/71/59/7159dc0a2cf1c004783b55eff8b3481f.jpg", starMedia: "1.2", category: "deportes" },
-        { id: 33, title: "Pokemon Ranger", img: "https://uvejuegos.com/img/caratulas/16646/pokemon-ranger-dsG.jpg", starMedia: "5", category: "carreras" }
-    ];
+    var data = {
+        gameName: $("#search").val()
+    }
+    doGet(RAWG_GAMES, data,
+        function (respuesta) {
+            agregarCards(respuesta.results)
+        }, function (error) {
+            alert("No se han podido conseguir los juegos: " + error);
+        });
 }
 //Obtiene los juegos de la api
 function getGamesList() {
@@ -49,7 +48,6 @@ function getGamesList() {
 }
 //Obtiene las categorias de la api y los añade
 function getCategories() {
-    //TODO llamar a API
     doGet(RAWG_CATEGORIES, undefined,
         function (respuesta) {
             agregarCategorias(respuesta.results);
@@ -77,13 +75,13 @@ function agregarCategorias(categories) {
 //Agrega las cards
 function agregarCards(games) {
     games.forEach(function (game) {
-        if (!isGameAdded(game.id)) {//evitamos duplciados
+        if (!isGameAdded(game.id)) {//evitamos duplciados//todo starmedia
             const item = $(`<div class="card" id="${game.id}">
-                        <img src="${game.img}" />
+                        <img src="${game.background_image}" />
                         <div class="d-none">
-                            <p id="${game.id}_title">${game.title}</p>
-                            <p id="${game.id}_category">${game.category}</p>
-                            <p id="${game.id}_starMedia">${game.starMedia}</p>
+                            <p id="${game.id}_title">${game.name}</p>
+                            <p id="${game.id}_category">${game.genres?.map(g => g.name).join(';')}</p>
+                            <p id="${game.id}_starMedia">0</p>
                         </div>
                         
                     </div>`);

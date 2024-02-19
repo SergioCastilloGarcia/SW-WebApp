@@ -5,7 +5,7 @@ function filter() {
     $(".card").each(function () {
         var cardId = $(this).attr("id");
         var titleText = $("#" + cardId + "_title").text();
-        var categoryText = $("#" + cardId + "_category").text();
+        var categoryText = $("#" + cardId + "_category").text().split(';');
 
         var showCard = true;
 

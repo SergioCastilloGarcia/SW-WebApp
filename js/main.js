@@ -14,7 +14,11 @@ $(document).ready(function () {
     });
 
     //Funcionalidad del buscador
-    $("#search").on("input", search);
+    $("#search").keypress(function (e) {
+        if (e.which == 13) { // Verifica si la tecla presionada es Enter
+            search();
+        }
+    });
     $("#category").on("change", search);
 
     //Funcionalidad del filtrado
