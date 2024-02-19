@@ -17,14 +17,8 @@ function isGameAdded(id) {
     return !isIdUnique;
 }
 
-//Obtiene los juegos y los pinta
-function getGames() {
-    var games = getGamesList();
-    agregarCards(games);
-}
 //Obtiene los juegos de la api
 function getResultList() {
-    //TODO llamar a API
     var category = $("#category").val();
     var data = {
         gameName: $("#search").val()
@@ -36,15 +30,27 @@ function getResultList() {
             alert("No se han podido conseguir los juegos: " + error);
         });
 }
-//Obtiene los juegos de la api
-function getGamesList() {
-    //TODO llamar a API
-    var userId = getCookie("userId");
-    return [
-        { id: 88, title: "Mario Kart", img: "https://uvejuegos.com/img/caratulas/7116/Caja_NDS_MarioKart[1].jpg", state: "todo", starMedia: "0", category: "carreras" },
-        { id: 78, title: "Mario 64", img: "https://uvejuegos.com/img/caratulas/7113/super_mario_64_ds_eur.jpg", state: "done", starMedia: "1.1", category: "plataforma" },
-        { id: 98, title: "Mario y Luigi", img: "https://uvejuegos.com/img/caratulas/15406/BajandochemsNDS.jpg", state: "inProgress", starMedia: "2.3", category: "deportes" }
-    ];
+//Obtiene los juegos de un jugador
+function getGames() {
+    var data = {
+        userId: getCookie("userId")
+    }
+    doGet(GAMES, data,
+        function (respuesta) {
+            respuesta.forEach(function (game) {
+                //El juego que devuelve la api no sirve, hay que completar algun dato (falta la imagen)
+                doGet(RAWG_GAMES + "/" + game.gameId, undefined,
+                    function (apiGame) {
+                        apiGame.status = game.status
+                        agregarCards([apiGame])
+                        search();//Buscamos una vez agregados nuestros juegos
+                    }, function (error) {
+                        alert("No se han podido conseguir los datos del juego: " + game.gameId);
+                    });
+            });
+        }, function (error) {
+            alert("No se han podido conseguir los juegos: " + error);
+        });
 }
 //Obtiene las categorias de la api y los añade
 function getCategories() {
@@ -75,12 +81,13 @@ function agregarCategorias(categories) {
 //Agrega las cards
 function agregarCards(games) {
     games.forEach(function (game) {
-        if (!isGameAdded(game.id)) {//evitamos duplciados//todo starmedia
+        if (!isGameAdded(game.id)) {//evitamos duplciados
             const item = $(`<div class="card" id="${game.id}">
                         <img src="${game.background_image}" />
                         <div class="d-none">
                             <p id="${game.id}_title">${game.name}</p>
                             <p id="${game.id}_category">${game.genres?.map(g => g.name).join(';')}</p>
+                            <div id="${game.id}_description">${game.description}</div>
                         </div>
                         
                     </div>`);
@@ -88,14 +95,14 @@ function agregarCards(games) {
             addDraggable(item);
             item.click(clickCard);
 
-            //lo añade a la columa con el state necesario, por defecto en el buscador
-            const elementoDestino = $("#" + (game.state ? game.state : "searchResults"));
+            //lo añade a la columa con el status necesario, por defecto en el buscador
+            const elementoDestino = $("#" + (game.status ? game.status : "searchResults"));
             if (elementoDestino.length > 0) {
                 elementoDestino.append(item);
 
                 updateColumnCount(elementoDestino.attr("id"));
             } else {
-                console.error(`No se encontró el elemento destino para el estado ${game.state ? game.state : "searchResults"}`);
+                console.error(`No se encontró el elemento destino para el estado ${game.status ? game.status : "searchResults"}`);
             }
         }
     });

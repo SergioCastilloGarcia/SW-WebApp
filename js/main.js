@@ -20,7 +20,6 @@ $(document).ready(function () {
         }
     });
     $("#category").on("change", search);
-
     //Funcionalidad del filtrado
     $("#searchFilter").on("input", filter);
     $("#categoryFilter").on("change", filter);
@@ -70,6 +69,11 @@ function clickCard() {
     // Cambiar el título del modal por el texto de la tarjeta
     gameTitle = $("#" + modalGameId + "_title").text()
     $("#modalTitle").text(gameTitle);
+
+    // Cambiar la descripcion del modal 
+    $('#modalDescription').empty();
+    $('#' + modalGameId + '_description').children().clone().appendTo('#modalDescription');
+
 
     //Actualiza las estrellas y comentarios
     updateStarSelect();

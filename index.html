@@ -65,18 +65,18 @@
 
         <div id="kanban" class="text-center">
             <div class="kanban-column">
-                <h2>Pendientes <span id=todo_count></span></h2>
-                <div class="column" id="todo" data-state="todo">
+                <h2>Pendientes <span id=WANT_PLAY_count></span></h2>
+                <div class="column" id="WANT_PLAY" data-state="WANT_PLAY">
                 </div>
             </div>
             <div class="kanban-column">
-                <h2>En progreso <span id=inProgress_count></span></h2>
-                <div class="column" id="inProgress" data-state="inProgress">
+                <h2>En progreso <span id=PLAYING_count></span></h2>
+                <div class="column" id="PLAYING" data-state="PLAYING">
                 </div>
             </div>
             <div class="kanban-column">
-                <h2>Completados <span id=done_count></span></h2>
-                <div class="column" id="done" data-state="done">
+                <h2>Completados <span id=FINISHED_count></span></h2>
+                <div class="column" id="FINISHED" data-state="FINISHED">
                 </div>
             </div>
         </div>
@@ -94,7 +94,8 @@
                 </div>
                 <div class="modal-body">
 
-
+                    <!-- Descripcion -->
+                    <div id="modalDescription"></div>
                     <!-- Comentario -->
                     <h3>Comentarios</h3>
                     <form id="commentForm">
@@ -109,7 +110,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="stars">
+                    <div class="starsDiv">
                         <div class="rating">
                             <input value="5" name="rate" id="star5" type="radio">
                             <label title="text" for="star5"></label>
