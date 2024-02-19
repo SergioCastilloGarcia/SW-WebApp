@@ -21,7 +21,7 @@ function changeStarSelect(starSelect) {
 //Obtiene la valoracion de un juego y actualiza la estrella
 function updateStarSelect() {
     getStarSelect().then(function (value) {
-        if (value < 0) {//Deseleccionamos todos
+        if (value < 0) {//Deseleccionamos los checks
             $('[id^="star"]').each(function () {
                 $(this).prop('checked', false)
             });

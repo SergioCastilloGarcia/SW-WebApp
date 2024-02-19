@@ -36,10 +36,10 @@ function doGet(endpoint, datos, successCallback, errorCallback) {
  * @param {*} successCallback función que se ejecuta si la llamada es correcta
  * @param {*} errorCallback función que se ejecuta si hay un error
  */
-function doPost(endpoint, datos, successCallback, errorCallback) {
+function doPost(endpoint, datos, successCallback, errorCallback, type = "POST") {
     // Configurar objeto de opciones para la solicitud AJAX
     var opciones = {
-        type: "POST",
+        type: type,
         url: API_URL + endpoint,
         success: successCallback,
         error: errorCallback

@@ -100,11 +100,31 @@ function addDraggable(item) {
 
 //Cambia el estado de un juego
 function changeGameState(gameId, state) {
-    //TODO llamar a api
-    var userId = getCookie("userId");
-    console.log("Cambio de estado: %s, %s, %s ", gameId, state, userId)
+    var data = {
+        userId: getCookie("userId"),
+        newStatus: state
+    }
+    doPost(GAMES + "/" + gameId, data,
+        function (respuesta) {
+            console.log("Cambio deestado: %s, %s  ", gameId, state)
+        }, function (error) {
+            createGameState(gameId, state)
+        }, "PUT");
 }
 
+//Crea una relacion del juegador y el juego
+function createGameState(gameId, state) {
+    data = {
+        userId: getCookie("userId"),
+        gameId: gameId
+    }
+    doPost(GAMES, data,
+        function (respuesta) {
+            changeGameState(gameId, state)//Por si el estado no es "WANT_PLAY"
+        }, function (error) {
+            console.log("No se ha podido cambiar el estado: %s, %s ", gameId, state)
+        });
+}
 //Elimina un juego
 function eliminar() {
     //TODO llamar a api

@@ -2,7 +2,7 @@ function filter() {
     var searchTerm = $("#searchFilter").val();
     var category = $("#categoryFilter").val();
 
-    $(".card").each(function () {
+    $(".kanban-column  .card").each(function () {
         var cardId = $(this).attr("id");
         var titleText = $("#" + cardId + "_title").text();
         var categoryText = $("#" + cardId + "_category").text().split(';');
