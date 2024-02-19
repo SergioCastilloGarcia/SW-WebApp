@@ -40,38 +40,39 @@ function getResultList() {
 //Obtiene los juegos de la api
 function getGamesList() {
     //TODO llamar a API
-    var username = getCookie("username");
+    var userId = getCookie("userId");
     return [
         { id: 88, title: "Mario Kart", img: "https://uvejuegos.com/img/caratulas/7116/Caja_NDS_MarioKart[1].jpg", state: "todo", starMedia: "0", category: "carreras" },
         { id: 78, title: "Mario 64", img: "https://uvejuegos.com/img/caratulas/7113/super_mario_64_ds_eur.jpg", state: "done", starMedia: "1.1", category: "plataforma" },
         { id: 98, title: "Mario y Luigi", img: "https://uvejuegos.com/img/caratulas/15406/BajandochemsNDS.jpg", state: "inProgress", starMedia: "2.3", category: "deportes" }
     ];
 }
-//Obtiene y añade las categorias
+//Obtiene las categorias de la api y los añade
 function getCategories() {
-    var categories = getCategoriesList();
-    // Seleccionamos el elemento select
+    //TODO llamar a API
+    doGet(RAWG_CATEGORIES, undefined,
+        function (respuesta) {
+            agregarCategorias(respuesta.results);
+        }, function (error) {
+            alert("No se han podido conseguir las categorias: " + error);
+        });
+}
+//Añade las categorias
+function agregarCategorias(categories) {
+
     var select = $("#category");
     var filterSelect = $("#categoryFilter");
 
     // Iteramos sobre la lista
     $.each(categories, function (index, category) {
         // Creamos un elemento option con el valor y el texto correspondientes
-        var option = $("<option>").attr("value", category.slug).text(category.name);
+        var option = $("<option>").attr("value", category.name).text(category.name);
 
         // Agregamos el elemento option al select de busqueda y filtrado
         select.append(option);
         filterSelect.append(option.clone());
     });
-}
-//Obtiene los juegos de la api
-function getCategoriesList() {
-    //TODO llamar a API
-    return [
-        { id: 1, name: "Plataforma", slug: "plataforma" },
-        { id: 2, name: "Carreras", slug: "carreras" },
-        { id: 3, name: "Deportes", slug: "deportes" }
-    ];
+
 }
 //Agrega las cards
 function agregarCards(games) {

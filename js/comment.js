@@ -8,8 +8,8 @@ function loginFormComment(event) {
 
     const comment = $("#comment").val();
 
-    var username = getCookie("username");
-    console.log("Comentario de %s para el juego %s: %s", username, modalGameId, comment)
+    var userId = getCookie("userId");
+    console.log("Comentario de %s para el juego %s: %s", userId, modalGameId, comment)
     // TODO llamar a API
 
     updateComments();

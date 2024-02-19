@@ -8,8 +8,8 @@ $(document).ready(function () {
 function changeStarSelect(starSelect) {
     //TODO llamar a api
     var value = starSelect.val()
-    var username = getCookie("username");
-    console.log("Valoracion de %s cambiada por %s a %s", modalGameId, username, value)
+    var userId = getCookie("userId");
+    console.log("Valoracion de %s cambiada por %s a %s", modalGameId, userId, value)
 }
 //Obtiene la valoracion de un juego y actualiza la estrella
 function updateStarSelect() {
@@ -22,8 +22,8 @@ function updateStarSelect() {
 
 //Obtiene la valoracion de un usuario sobre un juego
 function getStarSelect() {
-    var username = getCookie("username");
-    console.log("Consulta de valoracion de %s por %s", modalGameId, username)
+    var userId = getCookie("userId");
+    console.log("Consulta de valoracion de %s por %s", modalGameId, userId)
     //TODO llamar a api
     return 2;
 }

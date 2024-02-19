@@ -4,11 +4,12 @@ $(document).ready(function () {
 
 // Verificar si el usuario está logueado
 function isLogin() {
-    const username = getCookie("username");
-    if (!username) {
+    const userId = getCookie("userId");
+    if (!userId) {
         window.location.replace("login.html");
     }
     else {
+        const username = getCookie("username");
         $("#bienvenido").text(username)
     }
 }
@@ -29,38 +30,38 @@ function getCookie(name) {
 function loginFormSubmit(event) {
     event.preventDefault();
 
-    const username = $("#username").val();
+    var username = $("#username").val();
     const password = $("#password").val();
+    username = (/\S+@\S+\.\S+/.test(username)) ? username : username + '@email.com';//agrego un email si es necesario
 
     // Simulación del proceso de inicio de sesión
-    const loggedInUser = login(username, password);
+    login(username, password);
 
-    if (loggedInUser) {
-        // Crear una cookie para almacenar el nombre de usuario
-        document.cookie = `username=${username};`;
-
-        // Redirigir a la página principal
-        window.location.replace("index.html");
-    } else {
-        alert("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.");
-    }
 }
 
 // Método simulado de inicio de sesión
-function login(username, password) {
-    // Aquí deberías hacer la autenticación con el backend
-    return true;
-    // Supongamos que el usuario "admin" con contraseña "password" es válido
-    if (username === "admin" && password === "password") {
-        return username;
-    } else {
-        return null;
-    }
+function login(email, password) {
+    var datosLogin = {
+        email: email,
+        password: password
+    };
+    doPost(USERS, datosLogin,
+        function (respuesta) {
+            console.log('Usuario registrado con id: ' + respuesta.id);
+            // Crear una cookie para almacenar el nombre de usuario
+            document.cookie = `username=${respuesta.username};`;
+            document.cookie = `userId=${respuesta.id};`;
+            // Redirigir a la página principal
+            window.location.replace("index.html");
+        }, function (error) {
+            alert("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.");
+        });
 }
 // Método para cerrar sesión
 function logout() {
     // Crear una cookie para almacenar el nombre de usuario
     document.cookie = `username=;`;
+    document.cookie = `userId=;`;
 
     // Redirigir a la página principal
     window.location.replace("login.html");

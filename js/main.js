@@ -93,19 +93,19 @@ function addDraggable(item) {
 //Cambia el estado de un juego
 function changeGameState(gameId, state) {
     //TODO llamar a api
-    var username = getCookie("username");
-    console.log("Cambio de estado: %s, %s, %s ", gameId, state, username)
+    var userId = getCookie("userId");
+    console.log("Cambio de estado: %s, %s, %s ", gameId, state, userId)
 }
 
 //Elimina un juego
 function eliminar() {
     //TODO llamar a api
-    var username = getCookie("username");
+    var userId = getCookie("userId");
     var parentId = $("#" + modalGameId).parent().attr("id");
     $("#" + modalGameId).remove();//Eliminamos la card
     updateColumnCount(parentId);//Actualizamos el contador
     $("#cardModal").modal("hide");// Cerramos el modal
 
-    console.log("Eliminado: %s, %s", modalGameId, username)
+    console.log("Eliminado: %s, %s", modalGameId, userId)
 
 }
