@@ -1,4 +1,4 @@
-// Simular resultados de búsqueda
+// Función debuscar juegos
 function search() {
     var searchResults = $("#searchResults");
     searchResults.empty();
@@ -19,9 +19,14 @@ function isGameAdded(id) {
 
 //Obtiene los juegos de la api
 function getResultList() {
-    var category = $("#category").val();
+
     var data = {
-        gameName: $("#search").val()
+        gameName: $("#search").val(),
+
+    }
+    var category = $("#category").val().toLowerCase();
+    if (category != undefined && category !== "") {
+        data.category = category;
     }
     doGet(RAWG_GAMES, data,
         function (respuesta) {
