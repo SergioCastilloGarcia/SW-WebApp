@@ -6,6 +6,7 @@ const GAMES = "games"
 const RAWG_GAMES = "rawg/games"
 const RAWG_CATEGORIES = "rawg/categories"
 const COMMENTS = "comments"
+const HLTB = "hltb/games"
 
 
 /**

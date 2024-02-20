@@ -67,8 +67,12 @@ function stopFunction(element) {
 function clickCard() {
     modalGameId = $(this).attr('id');
     // Cambiar el título del modal por el texto de la tarjeta
-    gameTitle = $("#" + modalGameId + "_title").text()
+    var gameTitle = $("#" + modalGameId + "_title").text()
     $("#modalTitle").text(gameTitle);
+
+    // Cambiar la duracion del modal
+    var gameplayMain = $("#" + modalGameId + "_gameplayMain").text()
+    $("#duracion").text(gameplayMain);
 
     // Cambiar la descripcion del modal 
     $('#modalDescription').empty();

@@ -1,4 +1,4 @@
-// Simular resultados de búsqueda
+// Función debuscar juegos
 function search() {
     var searchResults = $("#searchResults");
     searchResults.empty();
@@ -19,15 +19,21 @@ function isGameAdded(id) {
 
 //Obtiene los juegos de la api
 function getResultList() {
-    var category = $("#category").val();
+
     var data = {
-        gameName: $("#search").val()
+        gameName: $("#search").val(),
+
+    }
+    var category = $("#category").val().toLowerCase();
+    if (category != undefined && category !== "") {
+        data.category = category;
     }
     doGet(RAWG_GAMES, data,
         function (respuesta) {
-            agregarCards(respuesta.results)
+            respuesta.results.forEach(function (game) {
+                getGame(game)
+            });
         }, function (error) {
-            alert("No se han podido conseguir los juegos: " + error);
         });
 }
 //Obtiene los juegos de un jugador
@@ -38,17 +44,44 @@ function getGames() {
     doGet(GAMES, data,
         function (respuesta) {
             respuesta.forEach(function (game) {
-                //El juego que devuelve la api no sirve, hay que completar algun dato (falta la imagen)
-                doGet(RAWG_GAMES + "/" + game.gameId, undefined,
-                    function (apiGame) {
-                        apiGame.status = game.status
-                        agregarCards([apiGame])
-                    }, function (error) {
-                        alert("No se han podido conseguir los datos del juego: " + game.gameId);
-                    });
+                getGame(game)
             });
         }, function (error) {
-            alert("No se han podido conseguir los juegos: " + error);
+            console.log("No se han podido conseguir los juegos: " + error);
+        });
+}
+
+//Obtiene un juego
+function getGame(game) {
+    var id = game.gameId;//A veces nos viene este gameId, cuando hay relacion entre el usuario y el juego
+    if (id == undefined) {
+        id = game.id
+    }
+    //El juego que devuelve la api no sirve, hay que completar algun dato (falta la imagen)
+    doGet(RAWG_GAMES + "/" + id, undefined,
+        function (apiGame) {
+            apiGame.status = game.status
+            getGameLong(apiGame)
+        }, function (error) {
+            getGameLong(game)
+            console.log("No se han podido conseguir los datos del juego: " + id);
+        });
+}
+//Obtiene la duracion de un juego
+function getGameLong(game) {
+    data = {
+        name: game.name
+    }
+    //El juego que devuelve la api no sirve, hay que completar algun dato (falta la imagen)
+    doGet(HLTB, data,
+        function (apiGame) {
+            console.log(apiGame)
+            game.gameplayMain = apiGame.gameplayMain
+            game.background_image = apiGame.imageUrl
+            agregarCards([game])
+        }, function (error) {
+            agregarCards([game])
+            console.log("No se han podido conseguir los datos del juego: " + game.id);
         });
 }
 //Obtiene las categorias de la api y los añade
@@ -87,6 +120,7 @@ function agregarCards(games) {
                             <p id="${game.id}_title">${game.name}</p>
                             <p id="${game.id}_category">${game.genres?.map(g => g.name).join(';')}</p>
                             <div id="${game.id}_description">${game.description}</div>
+                            <p id="${game.id}_gameplayMain">${game.gameplayMain}</p>
                         </div>
                         
                     </div>`);
