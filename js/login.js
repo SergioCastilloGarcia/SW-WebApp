@@ -48,9 +48,11 @@ function login(email, password) {
     doPost(USERS, datosLogin,
         function (respuesta) {
             console.log('Usuario registrado con id: ' + respuesta.id);
+            console.log(respuesta);
             // Crear una cookie para almacenar el nombre de usuario
             document.cookie = `username=${respuesta.username};`;
             document.cookie = `userId=${respuesta.id};`;
+            document.cookie = `token=${respuesta.token};`;
             // Redirigir a la página principal
             window.location.replace("index.html");
         }, function (error) {
@@ -62,6 +64,7 @@ function logout() {
     // Crear una cookie para almacenar el nombre de usuario
     document.cookie = `username=;`;
     document.cookie = `userId=;`;
+    document.cookie = `token=;`;
 
     // Redirigir a la página principal
     window.location.replace("login.html");

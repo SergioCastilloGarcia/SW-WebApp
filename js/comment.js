@@ -39,7 +39,7 @@ function updateComments() {
 //Obtiene los comentarios de un juego
 function getComments() {
     var data = {
-        userId: modalGameId
+        gameId: modalGameId
     }
     return new Promise(function (resolve, reject) {
         doGet(COMMENTS, data, function (respuesta) {

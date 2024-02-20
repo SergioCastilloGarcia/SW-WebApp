@@ -21,7 +21,10 @@ function doGet(endpoint, datos, successCallback, errorCallback) {
         type: "GET",
         url: API_URL + endpoint,
         success: successCallback,
-        error: errorCallback
+        error: errorCallback,
+        headers: {
+            "Token": getCookie("token")
+        }
     };
     opciones.url += '?' + $.param(datos);
 
@@ -42,7 +45,10 @@ function doPost(endpoint, datos, successCallback, errorCallback, type = "POST") 
         type: type,
         url: API_URL + endpoint,
         success: successCallback,
-        error: errorCallback
+        error: errorCallback,
+        headers: {
+            "Token": getCookie("token")
+        }
     };
     opciones.data = JSON.stringify(datos);
     opciones.contentType = 'application/json';
@@ -50,4 +56,11 @@ function doPost(endpoint, datos, successCallback, errorCallback, type = "POST") 
 
     // Realizar la solicitud AJAX
     $.ajax(opciones);
+}
+//Incluye el token en todas las peticiones
+function setToken(datos) {
+
+    if (datos != undefined) {
+        datos.Token = encodeURIComponent(getCookie("token"));
+    }
 }

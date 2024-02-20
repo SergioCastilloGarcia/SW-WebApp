@@ -43,7 +43,6 @@ function getGames() {
                     function (apiGame) {
                         apiGame.status = game.status
                         agregarCards([apiGame])
-                        search();//Buscamos una vez agregados nuestros juegos
                     }, function (error) {
                         alert("No se han podido conseguir los datos del juego: " + game.gameId);
                     });
